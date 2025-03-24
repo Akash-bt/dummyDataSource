@@ -1,62 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Large Data Table</title>
+  <title>Random JSON Data Display</title>
   <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: #f2f2f2;
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
     }
   </style>
 </head>
 <body>
 
-  <h2>Data Table</h2>
+  <h2>Random Data (JSON Format)</h2>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>UserID</th>
-        <th>City</th>
-        <th>Revenue</th>
-      </tr>
-    </thead>
-    <tbody>
-      <script>
-        function generateData() {
-          const tableBody = document.querySelector("tbody");
-          for (let i = 0; i < 100; i++) {
-            const name = "User" + (i + 1);
-            const userID = Math.floor(Math.random() * 100000);
-            const cities = ["New York", "London", "Tokyo", "Paris", "Sydney", "Berlin", "Toronto", "Mumbai", "Rio", "Dubai", "Sao Paulo", "Hanoi", "Singapore", "Seattle", "Helsinki", "Prague", "Riga", "Pretoria", "Amsterdam", "Brisbane"];
-            const city = cities[Math.floor(Math.random() * cities.length)];
-            const revenue = Math.floor(Math.random() * 1000000);
+  <pre id="jsonData"></pre>
 
-            const row = `
-              <tr>
-                <td>${name}</td>
-                <td>${userID}</td>
-                <td>${city}</td>
-                <td>${revenue}</td>
-              </tr>
-            `;
-            tableBody.innerHTML += row;
-          }
-        }
+  <script>
+    function generateRandomData(numRows) {
+      const data = [];
+      const cities = ["New York", "London", "Tokyo", "Paris", "Sydney", "Berlin", "Toronto", "Mumbai", "Rio", "Dubai"];
 
-        generateData();
-      </script>
-    </tbody>
-  </table>
+      for (let i = 0; i < numRows; i++) {
+        const name = "User" + (i + 1);
+        const userID = Math.floor(Math.random() * 100000);
+        const city = cities[Math.floor(Math.random() * cities.length)];
+        const revenue = Math.floor(Math.random() * 1000000);
+
+        data.push({
+          name: name,
+          userID: userID,
+          city: city,
+          revenue: revenue
+        });
+      }
+      return data;
+    }
+
+    const randomData = generateRandomData(100); // Generate 100 rows of data
+    document.getElementById("jsonData").textContent = JSON.stringify(randomData, null, 2);
+  </script>
 
 </body>
 </html>
