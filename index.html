@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Large Data Table</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Data Table</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>UserID</th>
+        <th>City</th>
+        <th>Revenue</th>
+      </tr>
+    </thead>
+    <tbody>
+      <script>
+        function generateData() {
+          const tableBody = document.querySelector("tbody");
+          for (let i = 0; i < 100; i++) {
+            const name = "User" + (i + 1);
+            const userID = Math.floor(Math.random() * 100000);
+            const cities = ["New York", "London", "Tokyo", "Paris", "Sydney", "Berlin", "Toronto", "Mumbai", "Rio", "Dubai", "Sao Paulo", "Hanoi", "Singapore", "Seattle", "Helsinki", "Prague", "Riga", "Pretoria", "Amsterdam", "Brisbane"];
+            const city = cities[Math.floor(Math.random() * cities.length)];
+            const revenue = Math.floor(Math.random() * 1000000);
+
+            const row = `
+              <tr>
+                <td>${name}</td>
+                <td>${userID}</td>
+                <td>${city}</td>
+                <td>${revenue}</td>
+              </tr>
+            `;
+            tableBody.innerHTML += row;
+          }
+        }
+
+        generateData();
+      </script>
+    </tbody>
+  </table>
+
+</body>
+</html>
